@@ -1,0 +1,48 @@
+clrscr
+sudo su
+
+Apt-get install libssl-dev
+
+bash <(curl -f -L -sS https://ngxpagespeed.com/install) -v latest-stable -n 1.10.3
+
+
+--sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-ipv6 --with-http_ssl_module --with-http_gunzip_module --with-http_gzip_static_module --with-pcre --with-debug
+
+sudo make (Y)
+
+sudo make install  (Y)
+
+
+sudo wget https://raw.githubusercontent.com/JasonGiedymin/nginx-init-ubuntu/master/nginx -O /etc/init.d/nginx
+sudo chmod +x /etc/init.d/nginx
+
+update-rc.d -f nginx defaults
+
+
+#ADD to Key
+
+cd /etc/default/
+
+sudo nano nginx 
+
+NGINX_CONF_FILE=/etc/nginx/nginx.conf
+DAEMON=/usr/sbin/nginx
+
+
+DONE 
+
+INSTALLING PHP5-FPM
+sudo apt-get install php5-fpm
+
+IF MAGENTO THEN
+apt-get install php5-fpm php5-mhash php5-mcrypt php5-curl php5-cli php5-mysql php5-gd php5-xsl php5-json php5-intl php-pear php5-dev php5-common php-soap libcurl3 curl -y
+
+#CONFIG PHP
+sudo nano /etc/php5/fpm/php.ini
+
+
+sudo nano /etc/php5/fpm/pool.d/www.conf
+
+Find the line, listen = 127.0.0.1:9000, and change the 127.0.0.1:9000 to /var/run/php5-fpm.sock.
+listen = /var/run/php5-fpm.sock
+
